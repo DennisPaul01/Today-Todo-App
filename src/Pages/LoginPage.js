@@ -176,11 +176,16 @@ const LoginPage = () => {
           <ModalBody pb={6}>
             <FormControl mt={1}>
               <FormLabel fontSize="xs">Email</FormLabel>
-              <Input fontSize="xs" placeholder="Email" />
+              <Input fontSize="xs" placeholder="Email" type="email" required />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel fontSize="xs">Password</FormLabel>
-              <Input fontSize="xs" placeholder="Password" />
+              <Input
+                fontSize="xs"
+                placeholder="Password"
+                type="password"
+                required
+              />
             </FormControl>
           </ModalBody>
 

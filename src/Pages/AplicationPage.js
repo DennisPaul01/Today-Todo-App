@@ -1,11 +1,12 @@
 import React from "react";
-
+import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "../Components/Navbar/Navbar";
 import HeaderImage from "../Components/HeaderImage/HeaderImage";
 import SideQuotes from "../Components/Quotes/SideQuotes";
 import ListTasks from "../Components/ListTasks/ListTasks";
 
 import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
+import AccountDetails from "../Components/AccountDetails/AccountDetails";
 
 const ApplicationPage = () => {
   return (
@@ -24,7 +25,17 @@ const ApplicationPage = () => {
               <HeaderImage />
             </GridItem>
             <GridItem colSpan={1}>
-              <ListTasks />
+              <Switch>
+                <Route path="/ap/1">
+                  <ListTasks />
+                </Route>
+                <Route path="/ap/account">
+                  <AccountDetails></AccountDetails>
+                </Route>
+                <Route path="/ap/">
+                  <Redirect to="/ap/1"></Redirect>
+                </Route>
+              </Switch>
             </GridItem>
             <GridItem colSpan={1}>
               <SideQuotes />

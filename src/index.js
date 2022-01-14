@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -8,9 +9,11 @@ import { myNewTheme } from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider resetCSS theme={myNewTheme}>
-      <App />
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider resetCSS theme={myNewTheme}>
+        <App />
+      </ChakraProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

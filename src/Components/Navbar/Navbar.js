@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { Box, Image, Text, Flex } from "@chakra-ui/react";
 
 import Logo from "../../Assets/logo.svg";
@@ -35,7 +35,7 @@ const NavBar = () => {
               <Box as="button" display="flex" pt="30px">
                 <Image src={Personal} bg="blue" borderRadius="2"></Image>
                 <Text color="black" fontSize="xs" fontWeight="400" pl="10px">
-                  Personal list
+                  <Link to="/ap/1"> Personal list</Link>
                 </Text>
               </Box>
               <Box as="button" display="flex" mt="10px" pt="10px">
@@ -47,7 +47,7 @@ const NavBar = () => {
                   padding="5px"
                 ></Image>
                 <Text color="black" fontSize="xs" fontWeight="400" pl="10px">
-                  Work list
+                  <Link to="/ap/2">Work list</Link>
                 </Text>
               </Box>
             </Box>
@@ -60,7 +60,7 @@ const NavBar = () => {
           >
             <Box as="button">
               <Text color="black" fontSize="sm" fontWeight="400">
-                Account
+                <Link to="/ap/account">Account</Link>
               </Text>
             </Box>
             <Box as="button">
