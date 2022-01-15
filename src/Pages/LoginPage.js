@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
   Box,
@@ -19,8 +20,17 @@ import {
 } from "@chakra-ui/react";
 
 import Logo from "../Assets/logo.svg";
+import { authActions } from "../Store/userAuth-slice";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const tokenUser = useSelector((state) => state.auth.token);
+  const stateUser = useSelector((state) => state.auth.isLoggedIn);
+  const loginHandler = () => {
+    dispatch(authActions.login({ token: "Denis Token", isLoggedIn: true }));
+    console.log(tokenUser, stateUser);
+  };
+
   const {
     isOpen: isOpenRegister,
     onOpen: onOpenRegister,
@@ -191,6 +201,7 @@ const LoginPage = () => {
 
           <ModalFooter display="flex" width="100%">
             <Button
+              onClick={loginHandler}
               bg="blue"
               color="white"
               fontSize="xs"

@@ -6,13 +6,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 import { myNewTheme } from "./theme";
+import { Provider } from "react-redux";
+import store from "./Store/index";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ChakraProvider resetCSS theme={myNewTheme}>
-        <App />
-      </ChakraProvider>
+      <Provider store={store}>
+        <ChakraProvider resetCSS theme={myNewTheme}>
+          <App />
+        </ChakraProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
