@@ -1,5 +1,9 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import useLogin from "../hooks/use-login";
+import useRegister from "../hooks/use-register";
+import AlertDialog from "../Components/UI/AlertDialog";
+
 import {
   Container,
   Box,
@@ -20,15 +24,37 @@ import {
 } from "@chakra-ui/react";
 
 import Logo from "../Assets/logo.svg";
-import { authActions } from "../Store/userAuth-slice";
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const tokenUser = useSelector((state) => state.auth.token);
+  const authDates = useLogin();
+  const registerUser = useRegister();
+  const [showError, setShowError] = useState(false);
+  const nameInputRegisterRef = useRef();
+  const emailInputRegisterRef = useRef();
+  const passwordInputRegisterRef = useRef();
+  const emailInputLoginRef = useRef();
+  const passwordInputLoginRef = useRef();
+
   const stateUser = useSelector((state) => state.auth.isLoggedIn);
+  const statusLogin = useSelector((state) => state.auth.statusLogin);
+
   const loginHandler = () => {
-    dispatch(authActions.login({ token: "Denis Token", isLoggedIn: true }));
-    console.log(tokenUser, stateUser);
+    authDates(
+      emailInputLoginRef.current.value,
+      passwordInputLoginRef.current.value
+    );
+    console.log(statusLogin);
+    if (stateUser === false) {
+      setShowError(true);
+    }
+  };
+
+  const registerHandler = () => {
+    registerUser(
+      nameInputRegisterRef.current.value,
+      emailInputRegisterRef.current.value,
+      passwordInputRegisterRef.current.value
+    );
   };
 
   const {
@@ -59,6 +85,7 @@ const LoginPage = () => {
         <Text mt="5" fontFamily="heading" fontSize="32">
           The simplest way is the best way.
         </Text>
+
         <Text textAlign="center" mt="35">
           A simple list of tasks with manual sorting. Without advertising. No
           reference to date or time.<br></br> You can add or delete tasks, you
@@ -109,33 +136,48 @@ const LoginPage = () => {
 
       {/* Register Form */}
 
-      <Modal isOpen={isOpenRegister} onClose={onCloseRegister}>
+      <Modal
+        isOpen={isOpenRegister}
+        onClose={() => {
+          setShowError(false);
+          onCloseRegister();
+        }}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Create your account</ModalHeader>
+          {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel fontSize="xs">First name</FormLabel>
-              <Input placeholder="First name" fontSize="xs" />
+              <Input
+                placeholder="First name"
+                fontSize="xs"
+                ref={nameInputRegisterRef}
+              />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel fontSize="xs">Email</FormLabel>
-              <Input fontSize="xs" placeholder="Email" />
+              <Input
+                fontSize="xs"
+                ref={emailInputRegisterRef}
+                placeholder="Email"
+              />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel fontSize="xs">Password</FormLabel>
-              <Input fontSize="xs" placeholder="Password" />
-            </FormControl>
-            <FormControl mt={4}>
-              <FormLabel fontSize="xs">Confirm Password</FormLabel>
-              <Input fontSize="xs" placeholder="Confirm Password" />
+              <Input
+                fontSize="xs"
+                ref={passwordInputRegisterRef}
+                placeholder="Password"
+              />
             </FormControl>
           </ModalBody>
 
           <ModalFooter display="flex" width="100%">
             <Button
-              onClick={onCloseLogin}
+              onClick={registerHandler}
               bg="blue"
               color="white"
               fontSize="xs"
@@ -155,7 +197,10 @@ const LoginPage = () => {
               Register
             </Button>
             <Button
-              onClick={onCloseRegister}
+              onClick={() => {
+                setShowError(false);
+                onCloseRegister();
+              }}
               fontSize="xs"
               px={50}
               _hover={{
@@ -178,15 +223,28 @@ const LoginPage = () => {
 
       {/* // Login Form */}
 
-      <Modal isOpen={isOpenLogin} onClose={onCloseLogin}>
+      <Modal
+        isOpen={isOpenLogin}
+        onClose={() => {
+          setShowError(false);
+          onCloseLogin();
+        }}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Login your account</ModalHeader>
+          {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl mt={1}>
               <FormLabel fontSize="xs">Email</FormLabel>
-              <Input fontSize="xs" placeholder="Email" type="email" required />
+              <Input
+                fontSize="xs"
+                placeholder="Email"
+                type="email"
+                required
+                ref={emailInputLoginRef}
+              />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel fontSize="xs">Password</FormLabel>
@@ -194,6 +252,7 @@ const LoginPage = () => {
                 fontSize="xs"
                 placeholder="Password"
                 type="password"
+                ref={passwordInputLoginRef}
                 required
               />
             </FormControl>
@@ -221,7 +280,10 @@ const LoginPage = () => {
               Login
             </Button>
             <Button
-              onClick={onCloseLogin}
+              onClick={() => {
+                setShowError(false);
+                onCloseLogin();
+              }}
               fontSize="xs"
               px={50}
               _hover={{

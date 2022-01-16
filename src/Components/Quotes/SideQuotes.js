@@ -23,7 +23,7 @@ const SideQuotes = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  }, []);
   const geneerateQuoteKanye = useCallback(async function () {
     try {
       const response = await fetch("https://api.kanye.rest");
@@ -36,15 +36,15 @@ const SideQuotes = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  }, []);
 
   useEffect(() => {
     geneerateQuote();
     geneerateQuoteKanye();
-    setInterval(() => {
-      geneerateQuote();
-      geneerateQuoteKanye();
-    }, 70000);
+    // setInterval(() => {
+    //   geneerateQuote();
+    //   geneerateQuoteKanye();
+    // }, 70000);
   }, []);
 
   return (
