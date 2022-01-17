@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 function App() {
   const stateUser = useSelector((state) => state.auth.isLoggedIn);
 
-  console.log(stateUser);
   return (
     <Box width="100%" height="100vh" bg="blue">
       <Switch>

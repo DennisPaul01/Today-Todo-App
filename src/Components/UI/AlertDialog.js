@@ -1,45 +1,52 @@
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
 
 const AlertDialog = (props) => {
-  let errorMessage;
-  if (props.errorMessage === "EMAIL_EXISTS") {
-    errorMessage = "The email address is already in use by another account.";
+  const { errorMessage } = props;
+  let errorMessages;
+  let status = "error";
+
+  if (errorMessage === "SUCCES") {
+    errorMessages = "Your password has ben changed";
+    status = "success";
   }
-  if (props.errorMessage === "OPERATION_NOT_ALLOWED") {
-    errorMessage = "Password sign-in is disabled for this project.";
+  if (errorMessage === "EMAIL_EXISTS") {
+    errorMessages = "The email address is already in use by another account.";
+  }
+  if (errorMessage === "OPERATION_NOT_ALLOWED") {
+    errorMessages = "Password sign-in is disabled for this project.";
   }
   if (
-    props.errorMessage ===
+    errorMessage ===
     "TOO_MANY_ATTEMPTS_TRY_LATER : Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later."
   ) {
-    errorMessage =
+    errorMessages =
       "We have blocked all requests from this device due to unusual activity. Try again later.";
   }
-  if (props.errorMessage === "EMAIL_NOT_FOUND") {
-    errorMessage =
+  if (errorMessage === "EMAIL_NOT_FOUND") {
+    errorMessages =
       "There is no user record corresponding to this identifier. The user may have been deleted.eqwewqewq";
   }
-  if (props.errorMessage === "EMAIL_NOT_FOUND") {
-    errorMessage =
+  if (errorMessage === "EMAIL_NOT_FOUND") {
+    errorMessages =
       "There is no user record corresponding to this identifier. The user may have been deleted.";
   }
-  if (props.errorMessage === "INVALID_PASSWORD") {
-    errorMessage =
+  if (errorMessage === "INVALID_PASSWORD") {
+    errorMessages =
       "The password is invalid or the user does not have a password.";
   }
-  if (props.errorMessage === "INVALID_EMAIL") {
-    errorMessage = "The email is invalid or the user does not have a account.";
+  if (errorMessage === "INVALID_EMAIL") {
+    errorMessages = "The email is invalid or the user does not have a account.";
   }
-  if (props.errorMessage === "MISSING_PASSWORD") {
-    errorMessage = "You have to enter a password. The filed is empty.";
+  if (errorMessage === "MISSING_PASSWORD") {
+    errorMessages = "You have to enter a password. The filed is empty.";
   }
-  if (props.errorMessage === "USER_DISABLED") {
-    errorMessage = "The user account has been disabled by an administrator.";
+  if (errorMessage === "USER_DISABLED") {
+    errorMessages = "The user account has been disabled by an administrator.";
   }
   return (
-    <Alert status="error">
+    <Alert status={status}>
       <AlertIcon />
-      <AlertTitle mr={2}>{errorMessage}</AlertTitle>
+      <AlertTitle mr={2}>{errorMessages}</AlertTitle>
     </Alert>
   );
 };

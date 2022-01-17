@@ -31,7 +31,6 @@ const SideQuotes = () => {
         throw new Error("There might be a problem");
       }
       const data = await response.json();
-      console.log(data.quote);
       setQuoteKanye(data.quote);
     } catch (error) {
       console.log(error);

@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Image, Text, Flex } from "@chakra-ui/react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../../Store/userAuth-slice";
 import Logo from "../../Assets/logo.svg";
 import Personal from "../../Assets/person_24px.svg";
 import Work from "../../Assets/work_24px.svg";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+  };
   return (
     <>
       <Box h="90vh" borderRight="2px" borderRightColor="greyLight">
@@ -64,7 +69,12 @@ const NavBar = () => {
               </Text>
             </Box>
             <Box as="button">
-              <Text color="black" fontSize="sm" fontWeight="400">
+              <Text
+                color="black"
+                fontSize="sm"
+                fontWeight="400"
+                onClick={logoutHandler}
+              >
                 Logout
               </Text>
             </Box>

@@ -9,14 +9,14 @@ const userAuthSlice = createSlice({
   },
   reducers: {
     login(state, action) {
-      localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("isLoggedIn", action.payload.isLoggedIn);
       state.token = action.payload.token;
       state.isLoggedIn = action.payload.isLoggedIn;
       state.statusLogin = action.payload.statusLogin;
     },
     logout(state) {
       state.token = null;
+      state.isLoggedIn = false;
+      state.statusLogin = null;
     },
   },
 });

@@ -43,7 +43,7 @@ const LoginPage = () => {
       emailInputLoginRef.current.value,
       passwordInputLoginRef.current.value
     );
-    console.log(statusLogin);
+
     if (stateUser === false) {
       setShowError(true);
     }

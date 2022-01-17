@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Text, Box, Input, Button } from "@chakra-ui/react";
+import useResetPassword from "../../hooks/use-resetPassword";
+
+import { useSelector } from "react-redux";
+import AlertDialog from "../UI/AlertDialog";
 
 const AccountDetails = () => {
+  const statusLogin = useSelector((state) => state.auth.statusLogin);
+  const resetPassword = useResetPassword();
+  const newPasswordRef = useRef();
+  const resetPasswordHandler = () => {
+    resetPassword(newPasswordRef.current.value);
+    setShowError(true);
+  };
+  const [showError, setShowError] = useState(false);
   return (
     <>
       <Text
@@ -51,8 +63,9 @@ const AccountDetails = () => {
         <Text ml="10px" fontSize="xs" fontWeight="700" color="red">
           New Password
         </Text>
-        <Input width="40%" fontSize="xs" mx="3" />
+        <Input width="40%" fontSize="xs" mx="3" ref={newPasswordRef} />
         <Button
+          onClick={resetPasswordHandler}
           bg="blue"
           color="white"
           fontSize="xs"
@@ -71,6 +84,19 @@ const AccountDetails = () => {
         >
           Change
         </Button>
+      </Box>
+
+      <Box
+        boxShadow="xl"
+        p="3"
+        rounded="md"
+        bg="white"
+        mx="20px"
+        display="flex"
+        justifyContent="flex-start"
+        alignItems="center"
+      >
+        {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
       </Box>
     </>
   );
