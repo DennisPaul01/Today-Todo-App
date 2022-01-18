@@ -69,20 +69,20 @@ const LoginPage = () => {
   } = useDisclosure();
 
   return (
-    <Container maxW="1596" mx="auto" pt="50px">
+    <Container maxW="1596" mx="auto" pt="50px" overflowY="scroll">
       <Box
         width="100%"
         bg="white"
         borderRadius="30px"
-        overflow="hidden"
-        h="90vh"
+        overflow="scroll"
+        maxHeight="90vh"
         display="flex"
-        flexDirection="column"
+        flexDirection={["column", "column"]}
         alignItems="center"
         justifyContent="center"
       >
-        <Image src={Logo} alt="Logo" width="40%" />
-        <Text mt="5" fontFamily="heading" fontSize="32">
+        <Image src={Logo} alt="Logo" width={["70%", "40%"]} />
+        <Text mt="5" fontFamily="heading" fontSize="32" align="center">
           The simplest way is the best way.
         </Text>
 
@@ -91,7 +91,12 @@ const LoginPage = () => {
           reference to date or time.<br></br> You can add or delete tasks, you
           can reorder tasks. Nothing more.
         </Text>
-        <Box mt="35">
+        <Box
+          mt="35"
+          display="flex"
+          flexDirection={["column", "row"]}
+          alignItems={["center"]}
+        >
           <Button
             onClick={onOpenLogin}
             mr="10px"
@@ -116,6 +121,7 @@ const LoginPage = () => {
             h="55"
             bg="red"
             color="white"
+            mt={["20px", "0"]}
             px="90"
             _hover={{
               backgroundColor: "red",

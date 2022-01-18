@@ -14,13 +14,13 @@ const NavBar = () => {
   };
   return (
     <>
-      <Box h="90vh" borderRight="2px" borderRightColor="greyLight">
-        <Flex
-          flexDirection="column"
-          pl="40px"
-          height="100%"
-          justifyContent="space-between"
-        >
+      <Box
+        height="100%"
+        borderRight="2px"
+        borderRightColor="greyLight"
+        display={["none", "block"]}
+      >
+        <Flex flexDirection="column" pl="40px" height="100%">
           <Box>
             <Box pt="10">
               <Image src={Logo} alt="Logo" width="60%" />
@@ -56,27 +56,28 @@ const NavBar = () => {
                 </Text>
               </Box>
             </Box>
-          </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-            pb="30px"
-          >
-            <Box as="button">
-              <Text color="black" fontSize="sm" fontWeight="400">
-                <Link to="/ap/account">Account</Link>
-              </Text>
-            </Box>
-            <Box as="button">
-              <Text
-                color="black"
-                fontSize="sm"
-                fontWeight="400"
-                onClick={logoutHandler}
-              >
-                Logout
-              </Text>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              pb="30px"
+              mt="20px"
+            >
+              <Box as="button">
+                <Text color="black" fontSize="sm" fontWeight="400">
+                  <Link to="/ap/account">Account</Link>
+                </Text>
+              </Box>
+              <Box as="button">
+                <Text
+                  color="black"
+                  fontSize="sm"
+                  fontWeight="400"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </Text>
+              </Box>
             </Box>
           </Box>
         </Flex>

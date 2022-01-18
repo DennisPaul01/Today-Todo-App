@@ -4,6 +4,7 @@ import { Box } from "@chakra-ui/react";
 const HeaderImage = () => {
   return (
     <Box
+      display={("none", "block")}
       w="100%"
       h="100%"
       borderBottom="2px"

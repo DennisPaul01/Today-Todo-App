@@ -10,18 +10,18 @@ function App() {
   const stateUser = useSelector((state) => state.auth.isLoggedIn);
 
   return (
-    <Box width="100%" height="100vh" bg="blue">
+    <Box width="100%" bg="blue" minHeight="100vh">
       <Switch>
         {!stateUser && (
           <Route path="/" exact>
             <LoginPage></LoginPage>
           </Route>
         )}
-        {stateUser && (
-          <Route path="/ap">
-            <ApplicationPage></ApplicationPage>
-          </Route>
-        )}
+        {/* {stateUser && ( */}
+        <Route path="/ap">
+          <ApplicationPage></ApplicationPage>
+        </Route>
+        {/* )} */}
         <Route path="*">
           <Redirect to="/"></Redirect>
         </Route>

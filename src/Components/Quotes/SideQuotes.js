@@ -47,7 +47,14 @@ const SideQuotes = () => {
   }, []);
 
   return (
-    <Box w="100%" h="100%" borderLeft="2px" borderLeftColor="greyLight">
+    <Box
+      w="100%"
+      maxHeight="100%"
+      height="100%"
+      borderLeft="2px"
+      borderLeftColor="greyLight"
+      display={["none", "none", "none", "block"]}
+    >
       <Text ml="20px" mb="20px" pt="20px" fontFamily="heading" fontSize="xs">
         Daily Hype
       </Text>

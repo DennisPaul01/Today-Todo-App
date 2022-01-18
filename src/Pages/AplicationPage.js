@@ -14,9 +14,13 @@ const ApplicationPage = () => {
       <Container maxW="1596" mx="auto" pt="50px">
         <Box width="100%" bg="white" borderRadius="30px" overflow="hidden">
           <Grid
-            h="90vh"
-            templateRows="0.6fr 1.4fr "
-            templateColumns="0.6fr 1.8fr 0.7fr; "
+            templateRows={["1fr", "1fr", "1fr", "200px 1.4fr "]}
+            templateColumns={[
+              "100%",
+              "300px 1.8fr 0.0fr ",
+              "300px 1.8fr 0.0fr ",
+              "300px 1.8fr 0.7fr ",
+            ]}
           >
             <GridItem rowSpan={3} colSpan={0}>
               <NavBar />

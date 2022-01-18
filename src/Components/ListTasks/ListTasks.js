@@ -85,6 +85,8 @@ const ListTasks = () => {
           Done
         </Text>
         <TaskDone></TaskDone>
+        <TaskDone></TaskDone>
+        <TaskDone></TaskDone>
       </Box>
 
       <Modal isOpen={isOpenTask} onClose={onCloseTask}>
