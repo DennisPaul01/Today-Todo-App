@@ -69,12 +69,12 @@ const LoginPage = () => {
   } = useDisclosure();
 
   return (
-    <Container maxW="1596" mx="auto" pt="50px" overflowY="scroll">
+    <Container maxW="1596" mx="auto" pt="50px">
       <Box
         width="100%"
         bg="white"
         borderRadius="30px"
-        overflow="scroll"
+        height="90vh"
         maxHeight="90vh"
         display="flex"
         flexDirection={["column", "column"]}
@@ -151,10 +151,12 @@ const LoginPage = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
+          <ModalHeader>
+            <Text fontSize="sm">Create your account</Text>
+          </ModalHeader>
           {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
           <ModalCloseButton />
-          <ModalBody pb={6}>
+          <ModalBody pb={3}>
             <FormControl>
               <FormLabel fontSize="xs">First name</FormLabel>
               <Input
@@ -238,10 +240,12 @@ const LoginPage = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Login your account</ModalHeader>
+          <ModalHeader>
+            <Text fontSize="sm">Login your account</Text>
+          </ModalHeader>
           {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
           <ModalCloseButton />
-          <ModalBody pb={6}>
+          <ModalBody pb={4}>
             <FormControl mt={1}>
               <FormLabel fontSize="xs">Email</FormLabel>
               <Input

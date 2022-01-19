@@ -32,7 +32,7 @@ const ListTasks = () => {
 
   return (
     <>
-      <Box w="100%" h="100%">
+      <Box w="100%" h="100%" minHeight="70vh">
         <Box p="20px">
           <Button
             onClick={onOpenTask}
@@ -85,14 +85,16 @@ const ListTasks = () => {
           Done
         </Text>
         <TaskDone></TaskDone>
-        <TaskDone></TaskDone>
-        <TaskDone></TaskDone>
+        {/* <TaskDone></TaskDone>
+        <TaskDone></TaskDone> */}
       </Box>
 
       <Modal isOpen={isOpenTask} onClose={onCloseTask}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Enter your task</ModalHeader>
+          <ModalHeader>
+            <Text fontSize="sm">Enter your task</Text>
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl mt={1}>

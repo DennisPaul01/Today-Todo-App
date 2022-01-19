@@ -17,8 +17,8 @@ const ApplicationPage = () => {
             templateRows={["1fr", "1fr", "1fr", "200px 1.4fr "]}
             templateColumns={[
               "100%",
-              "300px 1.8fr 0.0fr ",
-              "300px 1.8fr 0.0fr ",
+              "200px 1.8fr 0.0fr ",
+              "200px 1.8fr 0.0fr ",
               "300px 1.8fr 0.7fr ",
             ]}
           >

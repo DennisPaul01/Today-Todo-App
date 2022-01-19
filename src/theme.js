@@ -25,7 +25,7 @@ export const myNewTheme = extendTheme({
     sm: "24px",
     md: "32px",
     lg: "48px",
-    xl: "1.25rem",
+    xl: "48px",
   },
   fontWeights: {
     hairline: 100,
