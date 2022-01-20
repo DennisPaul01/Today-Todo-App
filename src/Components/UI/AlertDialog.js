@@ -9,6 +9,14 @@ const AlertDialog = (props) => {
     errorMessages = "Your password has ben changed";
     status = "success";
   }
+  if (errorMessage === "ERROR INPUT") {
+    errorMessages = "The input task field is empty";
+    status = "error";
+  }
+  if (errorMessage === "ERROR DATE") {
+    errorMessages = "The input date field is empty";
+    status = "error";
+  }
   if (errorMessage === "EMAIL_EXISTS") {
     errorMessages = "The email address is already in use by another account.";
   }
@@ -46,7 +54,9 @@ const AlertDialog = (props) => {
   return (
     <Alert status={status}>
       <AlertIcon />
-      <AlertTitle mr={2}>{errorMessages}</AlertTitle>
+      <AlertTitle fontSize="sm" mr={2}>
+        {errorMessages}
+      </AlertTitle>
     </Alert>
   );
 };

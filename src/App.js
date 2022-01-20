@@ -17,11 +17,11 @@ function App() {
             <LoginPage></LoginPage>
           </Route>
         )}
-        {/* {stateUser && ( */}
-        <Route path="/ap">
-          <ApplicationPage></ApplicationPage>
-        </Route>
-        {/* )} */}
+        {stateUser && (
+          <Route path="/ap">
+            <ApplicationPage></ApplicationPage>
+          </Route>
+        )}
         <Route path="*">
           <Redirect to="/"></Redirect>
         </Route>

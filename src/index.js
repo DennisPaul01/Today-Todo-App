@@ -17,6 +17,7 @@ import store from "./Store/index";
 //   setDoc,
 //   doc,
 //   Timestamp,
+//   addDoc,
 // } from "firebase/firestore";
 
 ReactDOM.render(
@@ -44,31 +45,21 @@ reportWebVitals();
 //     // const snapshot = await db.collection("users").get();
 //     // asa ne uitam ce este in colectie
 //     const querySnapshot = await getDocs(collection(db, "users"));
-
+//     const querySnapshot2 = await getDocs(
+//       collection(db, "users", "6vrhSf3MKPp8DyCqE8Zw", "tasks")
+//     );
 //     const docData = {
-//       stringExample: "Hello world!",
-//       booleanExample: true,
-//       numberExample: 3.14159265,
-//       Todo: [
-//         { task: "Read a book" },
-//         { task: "eat" },
-//         {
-//           task: "Eat2",
-//           date: Timestamp.fromDate(new Date()),
-//         },
-//       ],
-//       nullExample: null,
-//       objectExample: {
-//         a: 5,
-//         b: {
-//           nested: "foo",
-//         },
-//       },
+//       taskTodo: "write a letter",
+//       date: "26.06.2021",
+//       state: false,
 //     };
-//     // await setDoc(doc(db, "user", "kyN49FYo3p8GUshSEIOZ"), docData);
-//     const newCityRef = doc(collection(db, "cities"));
-//     querySnapshot.forEach((docSnapshot) => {
-//       console.log(docSnapshot.id, docSnapshot.data().Todo);
+//     // await setDoc(doc(db, "users", "kyN49FYo3p8GUshSEIOZ"), docData);
+
+//     const colRef = collection(db, "users", "6vrhSf3MKPp8DyCqE8Zw", "tasks");
+
+//     await setDoc(doc(colRef), docData);
+//     querySnapshot2.forEach((docSnapshot) => {
+//       console.log(docSnapshot.id, docSnapshot.data());
 //     });
 //   } catch (error) {
 //     console.error(error);

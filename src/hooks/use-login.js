@@ -24,9 +24,11 @@ const useLogin = () => {
 
       if (request.status === 200) {
         const resp = await request.json();
+        console.log(resp);
         dispatch(
           authActions.login({
             token: resp.idToken,
+            email: resp.email,
             isLoggedIn: true,
             statusLogin: "SUCCES",
           })
@@ -39,6 +41,7 @@ const useLogin = () => {
         dispatch(
           authActions.login({
             token: null,
+            email: null,
             isLoggedIn: false,
             statusLogin: resp.error.message,
           })
