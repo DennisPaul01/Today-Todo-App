@@ -3,6 +3,9 @@ import TaskStart from "./TaskStart.js";
 import TaskDone from "./TaskDone.js";
 import useTaskAdd from "../../hooks/use-taskAdd.js";
 import AlertDialog from "../UI/AlertDialog";
+
+import { useSelector } from "react-redux";
+
 import {
   Box,
   Button,
@@ -32,6 +35,8 @@ const ListTasks = () => {
   const [type, setType] = useState("Personal");
   const [statusTask, setStatusTask] = useState(false);
   const [messageError, setMessageError] = useState("");
+
+  const taskCheck = useSelector((state) => state.database.tasks);
 
   const today = new Date();
   const dateAddedTask =
@@ -74,6 +79,18 @@ const ListTasks = () => {
     }
   };
 
+  const taskUnfinised = taskCheck.map((task) => {
+    return (
+      <TaskStart
+        key={task.id}
+        id={task.id}
+        finishDate={task.finishDate}
+        statusTask={task.statusTask}
+        taskTodo={task.taskTodo}
+        type={task.type}
+      ></TaskStart>
+    );
+  });
   return (
     <>
       <Box w="100%" h="100%" minHeight="70vh">
@@ -116,7 +133,8 @@ const ListTasks = () => {
         >
           To do
         </Text>
-        <TaskStart></TaskStart>
+
+        {taskUnfinised}
         <Text
           m="20px"
           borderBottom="2px"
@@ -129,6 +147,7 @@ const ListTasks = () => {
           Done
         </Text>
         <TaskDone></TaskDone>
+
         {/* <TaskDone></TaskDone>
         <TaskDone></TaskDone> */}
       </Box>

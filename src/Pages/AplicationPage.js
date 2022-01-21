@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "../Components/Navbar/Navbar";
 import HeaderImage from "../Components/HeaderImage/HeaderImage";
 import SideQuotes from "../Components/Quotes/SideQuotes";
 import ListTasks from "../Components/ListTasks/ListTasks";
-
+import useFetchData from "../hooks/use-fetchData";
 import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import AccountDetails from "../Components/AccountDetails/AccountDetails";
 
+import { useSelector } from "react-redux";
+
 const ApplicationPage = () => {
+  const fetchData = useFetchData();
+  const emailUser = useSelector((state) => state.auth.email);
+  const taskCheck = useSelector((state) => state.database.tasks);
+  useEffect(() => {
+    console.log(taskCheck);
+    fetchData(emailUser);
+  }, [fetchData, emailUser]);
+
   return (
     <>
       <Container maxW="1596" mx="auto" pt="50px">

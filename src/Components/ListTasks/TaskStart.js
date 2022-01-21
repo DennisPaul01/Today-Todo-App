@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Text, Badge, Button, CloseButton } from "@chakra-ui/react";
-const TaskStart = () => {
+const TaskStart = (props) => {
+  const { finishDate, taskTodo } = props;
+
   return (
     <>
       <Box
@@ -16,8 +18,7 @@ const TaskStart = () => {
         flexDirection={["column", "column", "column", "row"]}
       >
         <Text w={["98%", "98%", "98%", "80%"]} fontSize="xs">
-          But I must explain to you how all this mistaken idea of denouncing
-          pleasure and praising pain was born
+          {taskTodo}
         </Text>
         <Box
           display="flex"
@@ -25,7 +26,7 @@ const TaskStart = () => {
           mt={["10px", "10px", "10px", "0px"]}
         >
           <Badge bg="green" px="10px" color="white">
-            18.10.2021
+            {finishDate}
           </Badge>
           <Button
             mx="10px"

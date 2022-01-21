@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Text, Badge, Button } from "@chakra-ui/react";
-const TaskDone = () => {
+const TaskDone = (props) => {
+  const { id, finishDate, statusTask, taskTodo, type } = props;
   return (
     <>
       <Box
