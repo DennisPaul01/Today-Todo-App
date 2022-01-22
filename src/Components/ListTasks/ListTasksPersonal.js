@@ -3,7 +3,6 @@ import TaskStart from "./TaskStart.js";
 import TaskDone from "./TaskDone.js";
 import useTaskAdd from "../../hooks/use-taskAdd.js";
 import AlertDialog from "../UI/AlertDialog";
-
 import { useSelector } from "react-redux";
 
 import {
@@ -27,13 +26,12 @@ import {
 
 import AddIcon from "../../Assets/add.svg";
 
-const ListTasks = () => {
+const ListTasksPersonal = () => {
   const addTask = useTaskAdd();
   const [showModal, setShowModal] = useState(false);
   const [taskTodo, setTaskTodo] = useState();
   const [finishDate, setfinishDate] = useState();
   const [type, setType] = useState("Personal");
-  const [statusTask, setStatusTask] = useState(false);
   const [messageError, setMessageError] = useState("");
 
   const taskCheck = useSelector((state) => state.database.tasks);
@@ -52,7 +50,6 @@ const ListTasks = () => {
   } = useDisclosure();
 
   const addTaskHandler = () => {
-    console.log(taskTodo, finishDate, type, statusTask);
     if (taskTodo == null) {
       setShowModal(true);
       setMessageError("ERROR INPUT");
@@ -70,7 +67,7 @@ const ListTasks = () => {
         finishDate,
         addedDate: dataTime,
         type,
-        statusTask,
+        statusTask: false,
       });
       setTaskTodo(null);
       setfinishDate(null);
@@ -79,18 +76,35 @@ const ListTasks = () => {
     }
   };
 
-  const taskUnfinised = taskCheck.map((task) => {
-    return (
-      <TaskStart
-        key={task.id}
-        id={task.id}
-        finishDate={task.finishDate}
-        statusTask={task.statusTask}
-        taskTodo={task.taskTodo}
-        type={task.type}
-      ></TaskStart>
-    );
-  });
+  const taskUnfinised = taskCheck
+    .filter((task) => task.statusTask === false && task.type === "Personal")
+    .map((task) => {
+      return (
+        <TaskStart
+          key={task.id}
+          id={task.id}
+          finishDate={task.finishDate}
+          statusTask={task.statusTask}
+          taskTodo={task.taskTodo}
+          type={task.type}
+        ></TaskStart>
+      );
+    });
+
+  const taskFinished = taskCheck
+    .filter((task) => task.statusTask === true && task.type === "Personal")
+    .map((task) => {
+      return (
+        <TaskDone
+          key={task.id}
+          id={task.id}
+          finishDate={task.finishDate}
+          statusTask={task.statusTask}
+          taskTodo={task.taskTodo}
+          type={task.type}
+        ></TaskDone>
+      );
+    });
   return (
     <>
       <Box w="100%" h="100%" minHeight="70vh">
@@ -146,7 +160,7 @@ const ListTasks = () => {
         >
           Done
         </Text>
-        <TaskDone></TaskDone>
+        {taskFinished}
 
         {/* <TaskDone></TaskDone>
         <TaskDone></TaskDone> */}
@@ -182,16 +196,16 @@ const ListTasks = () => {
                 }}
               />
             </FormControl>
-            <FormLabel
-              fontSize="xs"
-              mt={2}
+            <FormLabel fontSize="xs" mt={2}>
+              Type
+            </FormLabel>
+            <Select
+              size="xs"
               onChange={(event) => {
+                console.log(event.target.value);
                 setType(event.target.value);
               }}
             >
-              Type
-            </FormLabel>
-            <Select size="xs">
               <option value="Personal">Personal</option>
               <option value="Work">Work</option>
             </Select>
@@ -243,4 +257,4 @@ const ListTasks = () => {
   );
 };
 
-export default ListTasks;
+export default ListTasksPersonal;

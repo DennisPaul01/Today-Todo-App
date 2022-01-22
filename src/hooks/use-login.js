@@ -24,7 +24,7 @@ const useLogin = () => {
 
       if (request.status === 200) {
         const resp = await request.json();
-        console.log(resp);
+
         dispatch(
           authActions.login({
             token: resp.idToken,

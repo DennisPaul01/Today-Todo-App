@@ -1,21 +1,25 @@
 import { useDispatch } from "react-redux";
 import { databaseActions } from "../Store/task-slice";
-
+import { useSelector } from "react-redux";
 import db from "../data/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 const useFetchData = () => {
   const dispatch = useDispatch();
-
+  const emailUser = useSelector((state) => state.auth.email);
   //   const [dataTask, setDataTask] = useState(null);
+
   let tasks = [];
-  async function fetchDatabaseUsers(emailUser) {
+  async function fetchDatabaseUsers() {
     try {
-      console.log(db);
-      const querySnapshot2 = await getDocs(
+      //GET DATA FOR NAME
+
+      // GET DATA FOR TAKS
+      const querySnapshot1 = await getDocs(
         collection(db, "users", emailUser, "tasks")
       );
-      querySnapshot2.forEach((docSnapshot) => {
+
+      querySnapshot1.forEach((docSnapshot) => {
         tasks.push({ id: docSnapshot.id, ...docSnapshot.data() });
         // console.log(docSnapshot.id, docSnapshot.data());
       });
@@ -24,9 +28,8 @@ const useFetchData = () => {
           tasks: tasks,
         })
       );
-      console.log(tasks);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   }
 

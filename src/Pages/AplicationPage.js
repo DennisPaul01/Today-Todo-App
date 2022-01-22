@@ -3,21 +3,21 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "../Components/Navbar/Navbar";
 import HeaderImage from "../Components/HeaderImage/HeaderImage";
 import SideQuotes from "../Components/Quotes/SideQuotes";
-import ListTasks from "../Components/ListTasks/ListTasks";
+import ListTasksPersonal from "../Components/ListTasks/ListTasksPersonal";
+import ListTasksWork from "../Components/ListTasks/ListTasksWork";
 import useFetchData from "../hooks/use-fetchData";
+import useFetchName from "../hooks/use-nameData";
 import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import AccountDetails from "../Components/AccountDetails/AccountDetails";
 
-import { useSelector } from "react-redux";
-
 const ApplicationPage = () => {
   const fetchData = useFetchData();
-  const emailUser = useSelector((state) => state.auth.email);
-  const taskCheck = useSelector((state) => state.database.tasks);
+  const fetchName = useFetchName();
+
   useEffect(() => {
-    console.log(taskCheck);
-    fetchData(emailUser);
-  }, [fetchData, emailUser]);
+    fetchData();
+    fetchName();
+  }, []);
 
   return (
     <>
@@ -40,14 +40,17 @@ const ApplicationPage = () => {
             </GridItem>
             <GridItem colSpan={1}>
               <Switch>
-                <Route path="/ap/1">
-                  <ListTasks />
+                <Route path="/ap/personal">
+                  <ListTasksPersonal />
+                </Route>
+                <Route path="/ap/work">
+                  <ListTasksWork />
                 </Route>
                 <Route path="/ap/account">
                   <AccountDetails></AccountDetails>
                 </Route>
                 <Route path="/ap/">
-                  <Redirect to="/ap/1"></Redirect>
+                  <Redirect to="/ap/personal"></Redirect>
                 </Route>
               </Switch>
             </GridItem>

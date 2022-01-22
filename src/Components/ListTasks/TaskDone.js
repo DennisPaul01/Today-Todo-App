@@ -1,7 +1,15 @@
 import React from "react";
 import { Box, Text, Badge, Button } from "@chakra-ui/react";
+import useDeleteData from "../../hooks/use-deleteData";
+
 const TaskDone = (props) => {
   const { id, finishDate, statusTask, taskTodo, type } = props;
+
+  const deleteTask = useDeleteData();
+
+  const deleteTaskHandler = () => {
+    deleteTask(id);
+  };
   return (
     <>
       <Box
@@ -17,8 +25,7 @@ const TaskDone = (props) => {
         flexDirection={["column", "column", "column", "row"]}
       >
         <Text w={["98%", "98%", "98%", "80%"]} fontSize="xs" color="white">
-          But I must explain to you how all this mistaken idea of denouncing
-          pleasure and praising pain was born
+          {taskTodo}
         </Text>
         <Box
           display="flex"
@@ -26,9 +33,10 @@ const TaskDone = (props) => {
           mt={["10px", "10px", "10px", "0px"]}
         >
           <Badge bg="grey" px="10px" color="white">
-            18.10.2021
+            {finishDate}
           </Badge>
           <Button
+            onClick={deleteTaskHandler}
             mx="10px"
             h="35"
             bg="red"

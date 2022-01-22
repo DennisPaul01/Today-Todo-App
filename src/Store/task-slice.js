@@ -9,6 +9,9 @@ const databaseSlice = createSlice({
     addTaskInRedux(state, action) {
       state.tasks = action.payload.tasks;
     },
+    deleteDataLogout(state) {
+      state.tasks = [];
+    },
   },
 });
 

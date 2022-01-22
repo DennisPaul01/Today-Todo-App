@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import { authActions } from "../Store/userAuth-slice";
 import { useHistory } from "react-router-dom";
-
+import db from "../data/firebase";
+import { doc, setDoc } from "firebase/firestore";
 const useRegister = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const useRegister = () => {
       );
 
       if (request.status === 200) {
+        await setDoc(doc(db, "personalData", enterEmail), {
+          name: userName,
+          email: enterEmail,
+        });
+
         const resp = await request.json();
         dispatch(
           authActions.login({

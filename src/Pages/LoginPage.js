@@ -179,6 +179,7 @@ const LoginPage = () => {
                 fontSize="xs"
                 ref={passwordInputRegisterRef}
                 placeholder="Password"
+                type="password"
               />
             </FormControl>
           </ModalBody>

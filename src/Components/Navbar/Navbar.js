@@ -3,19 +3,23 @@ import { Link } from "react-router-dom";
 import { Box, Image, Text, Flex, IconButton } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../Store/userAuth-slice";
+import { databaseActions } from "../../Store/task-slice";
 import Logo from "../../Assets/logo.svg";
 import Personal from "../../Assets/person_24px.svg";
 import Work from "../../Assets/work_24px.svg";
 
 const NavBar = () => {
+  const nameUser = useSelector((state) => state.personalData.userName);
+
   const [headerMenuBurger, setHeaderMenuBurger] = useState("block");
   const [headerMenuClose, setHeaderMenuClose] = useState("none");
 
   const dispatch = useDispatch();
   const logoutHandler = () => {
     dispatch(authActions.logout());
+    dispatch(databaseActions.deleteDataLogout());
   };
 
   return (
@@ -41,7 +45,7 @@ const NavBar = () => {
               <Text fontSize="sm">
                 Hello{" "}
                 <span style={{ color: "#4285F4", fontWeight: "700" }}>
-                  Dennis,
+                  {nameUser}
                 </span>
               </Text>
             </Box>
@@ -52,7 +56,7 @@ const NavBar = () => {
               <Box as="button" display="flex" pt="30px">
                 <Image src={Personal} bg="blue" borderRadius="2"></Image>
                 <Text color="black" fontSize="xs" fontWeight="400" pl="10px">
-                  <Link to="/ap/1"> Personal list</Link>
+                  <Link to="/ap/personal"> Personal list</Link>
                 </Text>
               </Box>
               <Box as="button" display="flex" mt="10px" pt="10px">
@@ -64,7 +68,7 @@ const NavBar = () => {
                   padding="5px"
                 ></Image>
                 <Text color="black" fontSize="xs" fontWeight="400" pl="10px">
-                  <Link to="/ap/2">Work list</Link>
+                  <Link to="/ap/work">Work list</Link>
                 </Text>
               </Box>
             </Box>
