@@ -7,6 +7,9 @@ import AlertDialog from "../UI/AlertDialog";
 
 const AccountDetails = () => {
   const statusLogin = useSelector((state) => state.auth.statusLogin);
+  const emailUser = useSelector((state) => state.auth.email);
+  const nameUser = useSelector((state) => state.personalData.userName);
+
   const resetPassword = useResetPassword();
   const newPasswordRef = useRef();
   const resetPasswordHandler = () => {
@@ -31,7 +34,7 @@ const AccountDetails = () => {
 
         <Box boxShadow="xl" p="6" rounded="md" bg="white" mx="20px">
           <Text ml="10px" color="black" fontSize="xs" fontWeight="400">
-            Name: Dennis Paul
+            Name: {nameUser}
           </Text>
           <Text
             ml="10px"
@@ -40,7 +43,7 @@ const AccountDetails = () => {
             fontWeight="400"
             mt="20px"
           >
-            Email: m@yahoo.com
+            Email: {emailUser}
           </Text>
         </Box>
 

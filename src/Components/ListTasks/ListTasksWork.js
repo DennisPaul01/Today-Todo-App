@@ -4,7 +4,7 @@ import TaskDone from "./TaskDone.js";
 import useTaskAdd from "../../hooks/use-taskAdd.js";
 import AlertDialog from "../UI/AlertDialog";
 import { useSelector } from "react-redux";
-
+import useFetchData from "../../hooks/use-fetchData";
 import {
   Box,
   Button,
@@ -34,7 +34,7 @@ const ListTasksWork = () => {
   const [type, setType] = useState("Personal");
 
   const [messageError, setMessageError] = useState("");
-
+  const fetchData = useFetchData();
   const taskCheck = useSelector((state) => state.database.tasks);
 
   const today = new Date();
@@ -75,6 +75,7 @@ const ListTasksWork = () => {
       setShowModal(false);
       onCloseTask();
     }
+    fetchData();
   };
 
   const taskUnfinised = taskCheck

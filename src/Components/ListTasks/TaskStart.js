@@ -2,19 +2,21 @@ import React from "react";
 import { Box, Text, Badge, Button, CloseButton } from "@chakra-ui/react";
 import useDeleteData from "../../hooks/use-deleteData";
 import useModifyData from "../../hooks/use-modifyData";
+import useFetchData from "../../hooks/use-fetchData";
+
 const TaskStart = (props) => {
   const { id, finishDate, taskTodo } = props;
   const deleteTask = useDeleteData();
   const modifyTask = useModifyData();
-
+  const fetchData = useFetchData();
   const deleteTaskHandler = (e) => {
-    e.preventDefault();
     deleteTask(id);
+    fetchData();
   };
 
   const modifyTaskHandler = (e) => {
-    e.preventDefault();
     modifyTask(id);
+    fetchData();
   };
   return (
     <>

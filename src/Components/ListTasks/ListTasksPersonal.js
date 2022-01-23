@@ -23,7 +23,7 @@ import {
   FormControl,
   Select,
 } from "@chakra-ui/react";
-
+import useFetchData from "../../hooks/use-fetchData";
 import AddIcon from "../../Assets/add.svg";
 
 const ListTasksPersonal = () => {
@@ -34,6 +34,7 @@ const ListTasksPersonal = () => {
   const [type, setType] = useState("Personal");
   const [messageError, setMessageError] = useState("");
 
+  const fetchData = useFetchData();
   const taskCheck = useSelector((state) => state.database.tasks);
 
   const today = new Date();
@@ -74,6 +75,7 @@ const ListTasksPersonal = () => {
       setShowModal(false);
       onCloseTask();
     }
+    fetchData();
   };
 
   const taskUnfinised = taskCheck
