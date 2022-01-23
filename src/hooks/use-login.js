@@ -1,14 +1,14 @@
 import { useDispatch } from "react-redux";
 import { authActions } from "../Store/userAuth-slice";
 import { useHistory } from "react-router-dom";
-
+import { apiKeyFirebase } from "../data/apiKey";
 const useLogin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   async function login(enterEmail, enterPassowrd) {
     try {
       const request = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAwl0ONcwp9pJ5gPFBPSwysmgBXBcmTtwI",
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKeyFirebase}`,
         {
           method: "POST",
           body: JSON.stringify({

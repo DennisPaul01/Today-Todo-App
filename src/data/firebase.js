@@ -1,7 +1,7 @@
 //Brings in the core functionality
 import * as firebase from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import { apiKeyFirebase } from "./apiKey";
 // This bring in the firestoare functionality
 
 import "firebase/auth";
@@ -10,7 +10,7 @@ import "firebase/firestore";
 //TODO: asta nu are trebuie sa fie aici
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAwl0ONcwp9pJ5gPFBPSwysmgBXBcmTtwI",
+  apiKey: apiKeyFirebase,
   authDomain: "database-today.firebaseapp.com",
   projectId: "database-today",
   storageBucket: "database-today.appspot.com",

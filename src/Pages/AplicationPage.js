@@ -9,16 +9,14 @@ import useFetchData from "../hooks/use-fetchData";
 import useFetchName from "../hooks/use-nameData";
 import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 import AccountDetails from "../Components/AccountDetails/AccountDetails";
-import { useSelector } from "react-redux";
 
 const ApplicationPage = () => {
   const fetchData = useFetchData();
   const fetchName = useFetchName();
-  const taskLoad = useSelector((state) => state.database.tasks);
+
   useEffect(() => {
     fetchData();
     fetchName();
-    console.log(taskLoad);
   }, []);
 
   return (

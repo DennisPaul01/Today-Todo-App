@@ -40,10 +40,10 @@ const SideQuotes = () => {
   useEffect(() => {
     geneerateQuote();
     geneerateQuoteKanye();
-    // setInterval(() => {
-    //   geneerateQuote();
-    //   geneerateQuoteKanye();
-    // }, 70000);
+    setInterval(() => {
+      geneerateQuote();
+      geneerateQuoteKanye();
+    }, 30000);
   }, []);
 
   return (

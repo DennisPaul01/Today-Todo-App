@@ -3,13 +3,14 @@ import { authActions } from "../Store/userAuth-slice";
 import { useHistory } from "react-router-dom";
 import db from "../data/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { apiKeyFirebase } from "../data/apiKey";
 const useRegister = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   async function register(userName, enterEmail, enterPassowrd) {
     try {
       const request = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAwl0ONcwp9pJ5gPFBPSwysmgBXBcmTtwI",
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKeyFirebase}`,
         {
           method: "POST",
           body: JSON.stringify({
