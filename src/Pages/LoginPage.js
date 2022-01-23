@@ -80,7 +80,7 @@ const LoginPage = () => {
         flexDirection={["column", "column"]}
         alignItems="center"
         justifyContent="center"
-        className="loginPage"
+        className="animationBorder"
       >
         <Image src={Logo} alt="Logo" width={["70%", "40%"]} />
         <Text mt="5" fontFamily="heading" fontSize="32" align="center">

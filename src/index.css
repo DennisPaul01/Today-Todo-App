@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.loginPage {
+.animationBorder {
   border: 5px solid #34a853;
   animation-name: changeBorderColor;
   animation-duration: 6s;
