@@ -14,4 +14,4 @@ Technologies I used for this project:/
 -Chakra UI for customization/
 -React Router/
 -Redux for state management/
--Firebase login and cloud store for back-end/
+-Firebase login and firestore for back-end/
