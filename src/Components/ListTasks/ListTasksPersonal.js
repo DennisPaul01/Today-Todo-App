@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+
+import { useSelector } from "react-redux";
+
 import TaskStart from "./TaskStart.js";
 import TaskDone from "./TaskDone.js";
-import useTaskAdd from "../../hooks/use-taskAdd.js";
 import AlertDialog from "../UI/AlertDialog";
-import { useSelector } from "react-redux";
+
+import useTaskAdd from "../../hooks/use-taskAdd.js";
+import useFetchData from "../../hooks/use-fetchData";
 
 import {
   Box,
@@ -23,11 +27,12 @@ import {
   FormControl,
   Select,
 } from "@chakra-ui/react";
-import useFetchData from "../../hooks/use-fetchData";
+
 import AddIcon from "../../Assets/add.svg";
 
 const ListTasksPersonal = () => {
-  const addTask = useTaskAdd();
+  const taskCheck = useSelector((state) => state.database.tasks);
+
   const [showModal, setShowModal] = useState(false);
   const [taskTodo, setTaskTodo] = useState();
   const [finishDate, setfinishDate] = useState();
@@ -35,7 +40,7 @@ const ListTasksPersonal = () => {
   const [messageError, setMessageError] = useState("");
 
   const fetchData = useFetchData();
-  const taskCheck = useSelector((state) => state.database.tasks);
+  const addTask = useTaskAdd();
 
   const today = new Date();
   const dateAddedTask =
@@ -54,7 +59,6 @@ const ListTasksPersonal = () => {
     if (taskTodo == null) {
       setShowModal(true);
       setMessageError("ERROR INPUT");
-      console.log(messageError);
     }
 
     if (finishDate == null) {
@@ -204,7 +208,6 @@ const ListTasksPersonal = () => {
             <Select
               size="xs"
               onChange={(event) => {
-                console.log(event.target.value);
                 setType(event.target.value);
               }}
             >

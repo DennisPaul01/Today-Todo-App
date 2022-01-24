@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Spinner, Box, Center } from "@chakra-ui/react";
 const LazySpinner = () => {
   return (

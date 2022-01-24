@@ -1,8 +1,11 @@
 import React, { useRef, useState } from "react";
+
 import { useSelector } from "react-redux";
+
+import AlertDialog from "../Components/UI/AlertDialog";
+
 import useLogin from "../hooks/use-login";
 import useRegister from "../hooks/use-register";
-import AlertDialog from "../Components/UI/AlertDialog";
 
 import {
   Container,
@@ -26,17 +29,19 @@ import {
 import Logo from "../Assets/logo.svg";
 
 const LoginPage = () => {
+  const stateUser = useSelector((state) => state.auth.isLoggedIn);
+  const statusLogin = useSelector((state) => state.auth.statusLogin);
+
+  const [showError, setShowError] = useState(false);
+
   const authDates = useLogin();
   const registerUser = useRegister();
-  const [showError, setShowError] = useState(false);
+
   const nameInputRegisterRef = useRef();
   const emailInputRegisterRef = useRef();
   const passwordInputRegisterRef = useRef();
   const emailInputLoginRef = useRef();
   const passwordInputLoginRef = useRef();
-
-  const stateUser = useSelector((state) => state.auth.isLoggedIn);
-  const statusLogin = useSelector((state) => state.auth.statusLogin);
 
   const loginHandler = () => {
     authDates(

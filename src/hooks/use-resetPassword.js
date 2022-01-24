@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import { authActions } from "../Store/userAuth-slice";
 
 const useResetPassword = () => {
-  const dispatch = useDispatch();
   const tokenUser = useSelector((state) => state.auth.token);
+
+  const dispatch = useDispatch();
+
   async function resetPassword(enterNewPassowrd) {
     try {
       const request = await fetch(

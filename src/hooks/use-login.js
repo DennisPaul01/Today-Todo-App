@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 import { authActions } from "../Store/userAuth-slice";
+
 import { useHistory } from "react-router-dom";
+
 import { apiKeyFirebase } from "../data/apiKey";
 const useLogin = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
   async function login(enterEmail, enterPassowrd) {
     try {
       const request = await fetch(

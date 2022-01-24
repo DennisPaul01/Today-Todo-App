@@ -30,10 +30,8 @@ if (!firebaseConfig.messagingSenderId)
   throw new Error("Missing fire config: messagingSenderId");
 if (!firebaseConfig.appId) throw new Error("Missing fire config: appId");
 
-// asta conecteaza la baza noastra de date (la proiectul nostru)
 firebase.initializeApp(firebaseConfig);
 
-//asta creaza databasul in sine
 const db = getFirestore();
 
 export default db;

@@ -1,11 +1,13 @@
 import React, { useEffect, Suspense } from "react";
+
 import { Route, Switch, Redirect } from "react-router-dom";
+
+import LazySpinner from "../Components/UI/LazySpinner";
 
 import useFetchData from "../hooks/use-fetchData";
 import useFetchName from "../hooks/use-nameData";
-import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 
-import LazySpinner from "../Components/UI/LazySpinner";
+import { Box, Container, Grid, GridItem } from "@chakra-ui/react";
 
 const NavBar = React.lazy(() => import("../Components/Navbar/Navbar"));
 const SideQuotes = React.lazy(() => import("../Components/Quotes/SideQuotes"));

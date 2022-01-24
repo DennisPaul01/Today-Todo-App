@@ -2,8 +2,14 @@ import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
 
 const AlertDialog = (props) => {
   const { errorMessage } = props;
+
   let errorMessages;
   let status = "error";
+
+  if (errorMessage == null) {
+    errorMessages = "Login Succes";
+    status = "success";
+  }
 
   if (errorMessage === "SUCCES") {
     errorMessages = "Your password has ben changed";

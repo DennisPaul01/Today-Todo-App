@@ -1,22 +1,29 @@
 import React, { useRef, useState } from "react";
-import { Text, Box, Input, Button } from "@chakra-ui/react";
-import useResetPassword from "../../hooks/use-resetPassword";
 
 import { useSelector } from "react-redux";
+
 import AlertDialog from "../UI/AlertDialog";
+
+import useResetPassword from "../../hooks/use-resetPassword";
+
+import { Text, Box, Input, Button } from "@chakra-ui/react";
 
 const AccountDetails = () => {
   const statusLogin = useSelector((state) => state.auth.statusLogin);
   const emailUser = useSelector((state) => state.auth.email);
   const nameUser = useSelector((state) => state.personalData.userName);
 
+  const [showError, setShowError] = useState(false);
+
   const resetPassword = useResetPassword();
+
   const newPasswordRef = useRef();
+
   const resetPasswordHandler = () => {
     resetPassword(newPasswordRef.current.value);
     setShowError(true);
   };
-  const [showError, setShowError] = useState(false);
+
   return (
     <>
       <Box height="100%" minHeight="68vh">

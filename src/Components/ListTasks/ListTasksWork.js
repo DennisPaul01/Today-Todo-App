@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+
+import { useSelector } from "react-redux";
+
+import AlertDialog from "../UI/AlertDialog";
 import TaskStart from "./TaskStart.js";
 import TaskDone from "./TaskDone.js";
-import useTaskAdd from "../../hooks/use-taskAdd.js";
-import AlertDialog from "../UI/AlertDialog";
-import { useSelector } from "react-redux";
+
 import useFetchData from "../../hooks/use-fetchData";
+import useTaskAdd from "../../hooks/use-taskAdd";
+
 import {
   Box,
   Button,
@@ -27,15 +31,16 @@ import {
 import AddIcon from "../../Assets/add.svg";
 
 const ListTasksWork = () => {
-  const addTask = useTaskAdd();
+  const taskCheck = useSelector((state) => state.database.tasks);
+
   const [showModal, setShowModal] = useState(false);
   const [taskTodo, setTaskTodo] = useState();
   const [finishDate, setfinishDate] = useState();
   const [type, setType] = useState("Personal");
-
   const [messageError, setMessageError] = useState("");
+
   const fetchData = useFetchData();
-  const taskCheck = useSelector((state) => state.database.tasks);
+  const addTask = useTaskAdd();
 
   const today = new Date();
   const dateAddedTask =
@@ -43,7 +48,6 @@ const ListTasksWork = () => {
   const time =
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   const dataTime = dateAddedTask + " " + time;
-
   const {
     isOpen: isOpenTask,
     onOpen: onOpenTask,
@@ -54,7 +58,6 @@ const ListTasksWork = () => {
     if (taskTodo == null) {
       setShowModal(true);
       setMessageError("ERROR INPUT");
-      console.log(messageError);
     }
 
     if (finishDate == null) {
@@ -204,7 +207,6 @@ const ListTasksWork = () => {
             <Select
               size="xs"
               onChange={(event) => {
-                console.log(event.target.value);
                 setType(event.target.value);
               }}
             >

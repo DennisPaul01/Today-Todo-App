@@ -9,6 +9,7 @@ const SideQuotes = () => {
   const [quote, setQuote] = useState();
   const [quoteKanye, setQuoteKanye] = useState();
   const [author, setAuthor] = useState();
+
   const geneerateQuote = useCallback(async function () {
     try {
       const response = await fetch(
@@ -43,7 +44,8 @@ const SideQuotes = () => {
     setInterval(() => {
       geneerateQuote();
       geneerateQuoteKanye();
-    }, 30000);
+    }, 7000);
+    return () => {};
   }, []);
 
   return (
