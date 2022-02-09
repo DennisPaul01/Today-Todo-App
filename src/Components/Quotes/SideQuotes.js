@@ -62,7 +62,7 @@ const SideQuotes = () => {
       </Text>
       <Box boxShadow="xl" p="6" rounded="md" bg="white" mx="20px">
         <Box display="flex">
-          <Image src={HelloHand}></Image>
+          <Image src={HelloHand} alt="Hello Hand"></Image>
           <Text ml="10px" color="black" fontSize="xs" fontWeight="400">
             Hello there
           </Text>
@@ -73,7 +73,7 @@ const SideQuotes = () => {
       </Box>
       <Box boxShadow="xl" p="6" rounded="md" bg="white" mx="20px" mt="10px">
         <Box display="flex">
-          <Image src={fire} width="10%"></Image>
+          <Image src={fire} width="10%" alt="Fire"></Image>
           <Text ml="10px" color="black" fontSize="xs" fontWeight="400">
             Kanye Tweets
           </Text>

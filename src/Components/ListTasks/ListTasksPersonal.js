@@ -139,7 +139,7 @@ const ListTasksPersonal = () => {
             _after={{ outline: "none", border: "none" }}
             _before={{ outline: "none", border: "none" }}
           >
-            Add new task <Image src={AddIcon} ml="10px"></Image>
+            Add new task <Image src={AddIcon} alt="Add Icon" ml="10px"></Image>
           </Button>
         </Box>
         <Text

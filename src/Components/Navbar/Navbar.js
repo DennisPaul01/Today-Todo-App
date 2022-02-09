@@ -54,7 +54,12 @@ const NavBar = () => {
                 Workspaces
               </Text>
               <Box as="button" display="flex" pt="30px">
-                <Image src={Personal} bg="blue" borderRadius="2"></Image>
+                <Image
+                  src={Personal}
+                  alt="Personal"
+                  bg="blue"
+                  borderRadius="2"
+                ></Image>
                 <Text color="black" fontSize="xs" fontWeight="400" pl="10px">
                   <Link to="/ap/personal"> Personal list</Link>
                 </Text>
@@ -66,6 +71,7 @@ const NavBar = () => {
                   borderRadius="2"
                   w="100"
                   padding="5px"
+                  alt="Click for work"
                 ></Image>
                 <Text color="black" fontSize="xs" fontWeight="400" pl="10px">
                   <Link to="/ap/work">Work list</Link>
