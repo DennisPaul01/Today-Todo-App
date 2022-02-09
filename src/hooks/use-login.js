@@ -34,7 +34,7 @@ const useLogin = () => {
             token: resp.idToken,
             email: resp.email,
             isLoggedIn: true,
-            statusLogin: "SUCCES",
+            statusLogin: "SUCCES_LOGIN",
           })
         );
         history.push("/ap");

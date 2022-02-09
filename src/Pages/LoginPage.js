@@ -54,12 +54,16 @@ const LoginPage = () => {
     }
   };
 
-  const registerHandler = () => {
+  const registerHandler = (e) => {
+    e.preventDefault();
     registerUser(
       nameInputRegisterRef.current.value,
       emailInputRegisterRef.current.value,
       passwordInputRegisterRef.current.value
     );
+    if (stateUser === false) {
+      setShowError(true);
+    }
   };
 
   const {
@@ -161,78 +165,81 @@ const LoginPage = () => {
             <Text fontSize="sm">Create your account</Text>
           </ModalHeader>
           {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
-          <ModalCloseButton />
-          <ModalBody pb={3}>
-            <FormControl>
-              <FormLabel fontSize="xs">First name</FormLabel>
-              <Input
-                placeholder="First name"
-                fontSize="xs"
-                ref={nameInputRegisterRef}
-              />
-            </FormControl>
-            <FormControl mt={4}>
-              <FormLabel fontSize="xs">Email</FormLabel>
-              <Input
-                fontSize="xs"
-                ref={emailInputRegisterRef}
-                placeholder="Email"
-              />
-            </FormControl>
-            <FormControl mt={4}>
-              <FormLabel fontSize="xs">Password</FormLabel>
-              <Input
-                fontSize="xs"
-                ref={passwordInputRegisterRef}
-                placeholder="Password"
-                type="password"
-              />
-            </FormControl>
-          </ModalBody>
+          <form onSubmit={registerHandler}>
+            <ModalCloseButton />
+            <ModalBody pb={3}>
+              <FormControl>
+                <FormLabel fontSize="xs">First name</FormLabel>
+                <Input
+                  placeholder="First name"
+                  fontSize="xs"
+                  ref={nameInputRegisterRef}
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel fontSize="xs">Email</FormLabel>
+                <Input
+                  fontSize="xs"
+                  ref={emailInputRegisterRef}
+                  placeholder="Email"
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel fontSize="xs">Password</FormLabel>
+                <Input
+                  fontSize="xs"
+                  ref={passwordInputRegisterRef}
+                  autoComplete="off"
+                  placeholder="Password"
+                  type="password"
+                />
+              </FormControl>
+            </ModalBody>
 
-          <ModalFooter display="flex" width="100%">
-            <Button
-              onClick={registerHandler}
-              bg="blue"
-              color="white"
-              fontSize="xs"
-              px={50}
-              mr={3}
-              _hover={{
-                backgroundColor: "blue",
-                outline: "none",
-                border: "none",
-              }}
-              _active={{
-                backgroundColor: "blue",
-                outline: "none",
-                border: "none",
-              }}
-            >
-              Register
-            </Button>
-            <Button
-              onClick={() => {
-                setShowError(false);
-                onCloseRegister();
-              }}
-              fontSize="xs"
-              px={50}
-              _hover={{
-                color: "white",
-                backgroundColor: "red",
-                outline: "none",
-                border: "none",
-              }}
-              _active={{
-                backgroundColor: "red",
-                outline: "none",
-                border: "none",
-              }}
-            >
-              Cancel
-            </Button>
-          </ModalFooter>
+            <ModalFooter display="flex" width="100%">
+              <Button
+                type="submit"
+                bg="blue"
+                color="white"
+                fontSize="xs"
+                px={50}
+                mr={3}
+                _hover={{
+                  backgroundColor: "blue",
+                  outline: "none",
+                  border: "none",
+                }}
+                _active={{
+                  backgroundColor: "blue",
+                  outline: "none",
+                  border: "none",
+                }}
+              >
+                Register
+              </Button>
+              <Button
+                onClick={() => {
+                  setShowError(false);
+                  onCloseRegister();
+                }}
+                fontSize="xs"
+                px={50}
+                _hover={{
+                  color: "white",
+                  backgroundColor: "red",
+                  outline: "none",
+                  border: "none",
+                }}
+                _active={{
+                  backgroundColor: "red",
+                  outline: "none",
+                  border: "none",
+                }}
+              >
+                Cancel
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
 
@@ -251,73 +258,76 @@ const LoginPage = () => {
             <Text fontSize="sm">Login your account</Text>
           </ModalHeader>
           {showError && <AlertDialog errorMessage={statusLogin}></AlertDialog>}
-          <ModalCloseButton />
-          <ModalBody pb={4}>
-            <FormControl mt={1}>
-              <FormLabel fontSize="xs">Email</FormLabel>
-              <Input
-                fontSize="xs"
-                placeholder="Email"
-                type="email"
-                required
-                ref={emailInputLoginRef}
-              />
-            </FormControl>
-            <FormControl mt={4}>
-              <FormLabel fontSize="xs">Password</FormLabel>
-              <Input
-                fontSize="xs"
-                placeholder="Password"
-                type="password"
-                ref={passwordInputLoginRef}
-                required
-              />
-            </FormControl>
-          </ModalBody>
+          <form onSubmit={loginHandler}>
+            <ModalCloseButton />
+            <ModalBody pb={4}>
+              <FormControl mt={1}>
+                <FormLabel fontSize="xs">Email</FormLabel>
+                <Input
+                  fontSize="xs"
+                  placeholder="Email"
+                  type="email"
+                  required
+                  ref={emailInputLoginRef}
+                />
+              </FormControl>
+              <FormControl mt={4}>
+                <FormLabel fontSize="xs">Password</FormLabel>
+                <Input
+                  autoComplete="off"
+                  fontSize="xs"
+                  placeholder="Password"
+                  type="password"
+                  ref={passwordInputLoginRef}
+                  required
+                />
+              </FormControl>
+            </ModalBody>
 
-          <ModalFooter display="flex" width="100%">
-            <Button
-              onClick={loginHandler}
-              bg="blue"
-              color="white"
-              fontSize="xs"
-              px={50}
-              mr={3}
-              _hover={{
-                backgroundColor: "blue",
-                outline: "none",
-                border: "none",
-              }}
-              _active={{
-                backgroundColor: "blue",
-                outline: "none",
-                border: "none",
-              }}
-            >
-              Login
-            </Button>
-            <Button
-              onClick={() => {
-                setShowError(false);
-                onCloseLogin();
-              }}
-              fontSize="xs"
-              px={50}
-              _hover={{
-                color: "white",
-                backgroundColor: "red",
-                outline: "none",
-                border: "none",
-              }}
-              _active={{
-                backgroundColor: "red",
-                outline: "none",
-                border: "none",
-              }}
-            >
-              Cancel
-            </Button>
-          </ModalFooter>
+            <ModalFooter display="flex" width="100%">
+              <Button
+                onClick={loginHandler}
+                bg="blue"
+                color="white"
+                fontSize="xs"
+                px={50}
+                mr={3}
+                _hover={{
+                  backgroundColor: "blue",
+                  outline: "none",
+                  border: "none",
+                }}
+                _active={{
+                  backgroundColor: "blue",
+                  outline: "none",
+                  border: "none",
+                }}
+              >
+                Login
+              </Button>
+              <Button
+                onClick={() => {
+                  setShowError(false);
+                  onCloseLogin();
+                }}
+                fontSize="xs"
+                px={50}
+                _hover={{
+                  color: "white",
+                  backgroundColor: "red",
+                  outline: "none",
+                  border: "none",
+                }}
+                _active={{
+                  backgroundColor: "red",
+                  outline: "none",
+                  border: "none",
+                }}
+              >
+                Cancel
+              </Button>
+            </ModalFooter>
+          </form>
         </ModalContent>
       </Modal>
     </Container>

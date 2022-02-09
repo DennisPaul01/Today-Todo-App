@@ -13,6 +13,39 @@ const useRegister = () => {
   const dispatch = useDispatch();
   async function register(userName, enterEmail, enterPassowrd) {
     try {
+      if (userName.length < 3) {
+        dispatch(
+          authActions.login({
+            token: null,
+            email: null,
+            isLoggedIn: false,
+            statusLogin: "USER_LENGTH_3",
+          })
+        );
+        return;
+      }
+      if (enterEmail.length <= 3) {
+        dispatch(
+          authActions.login({
+            token: null,
+            email: null,
+            isLoggedIn: false,
+            statusLogin: "EMAIL_LENGTH_6",
+          })
+        );
+        return;
+      }
+      if (enterPassowrd.length < 6) {
+        dispatch(
+          authActions.login({
+            token: null,
+            email: null,
+            isLoggedIn: false,
+            statusLogin: "PASSWORD_LENGTH_6",
+          })
+        );
+        return;
+      }
       const request = await fetch(
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKeyFirebase}`,
         {
@@ -52,6 +85,7 @@ const useRegister = () => {
         dispatch(
           authActions.login({
             token: null,
+            email: null,
             isLoggedIn: false,
             statusLogin: resp.error.message,
           })

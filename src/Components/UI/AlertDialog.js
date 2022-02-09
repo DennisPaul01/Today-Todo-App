@@ -7,10 +7,14 @@ const AlertDialog = (props) => {
   let status = "error";
 
   if (errorMessage == null) {
-    errorMessages = "Login Succes";
-    status = "success";
+    errorMessages = "We check the creditals";
+    status = "info";
   }
 
+  if (errorMessage === "SUCCES_LOGIN") {
+    errorMessages = "You have been loged in!";
+    status = "success";
+  }
   if (errorMessage === "SUCCES") {
     errorMessages = "Your password has ben changed";
     status = "success";
@@ -49,13 +53,26 @@ const AlertDialog = (props) => {
       "The password is invalid or the user does not have a password.";
   }
   if (errorMessage === "INVALID_EMAIL") {
-    errorMessages = "The email is invalid or the user does not have a account.";
+    errorMessages = "The email is invalid.";
   }
   if (errorMessage === "MISSING_PASSWORD") {
     errorMessages = "You have to enter a password. The filed is empty.";
   }
   if (errorMessage === "USER_DISABLED") {
     errorMessages = "The user account has been disabled by an administrator.";
+  }
+  if (errorMessage === "USER_DISABLED") {
+    errorMessages = "The user account has been disabled by an administrator.";
+  }
+  if (errorMessage === "USER_LENGTH_3") {
+    errorMessages = "The user name must have more than 3 characters.";
+  }
+  if (errorMessage === "EMAIL_LENGTH_6") {
+    errorMessages =
+      "The email must have more than 3 characters and contain @. ";
+  }
+  if (errorMessage === "PASSWORD_LENGTH_6") {
+    errorMessages = "The password must have more than 6 characters.";
   }
   return (
     <Alert status={status}>
