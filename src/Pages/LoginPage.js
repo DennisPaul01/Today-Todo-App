@@ -91,7 +91,14 @@ const LoginPage = () => {
         justifyContent="center"
         className="animationBorder"
       >
-        <Image src={Logo} alt="Logo" width={["70%", "40%"]} />
+        <Image
+          src={Logo}
+          alt="TODAY LOGO"
+          htmlWidth="622"
+          htmlHeight="262"
+          loading="lazy"
+          width={["70%", "40%"]}
+        />
         <Text mt="5" fontFamily="heading" fontSize="32" align="center">
           The simplest way is the best way.
         </Text>

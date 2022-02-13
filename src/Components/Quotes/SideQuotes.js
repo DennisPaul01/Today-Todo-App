@@ -4,6 +4,8 @@ import { Box, Text, Image } from "@chakra-ui/react";
 
 import HelloHand from "../../Assets/hand.png";
 import fire from "../../Assets/fire_1f525.png";
+import HelloHandwebp from "../../Assets/hand.webp";
+import firewebp from "../../Assets/fire_1f525.webp";
 
 const SideQuotes = () => {
   const [quote, setQuote] = useState();
@@ -62,7 +64,13 @@ const SideQuotes = () => {
       </Text>
       <Box boxShadow="xl" p="6" rounded="md" bg="white" mx="20px">
         <Box display="flex">
-          <Image src={HelloHand} alt="Hello Hand"></Image>
+          <Image
+            src={HelloHandwebp}
+            fallbackSrc={HelloHand}
+            alt="Hello Hand"
+            htmlWidth="24"
+            htmlHeight="27"
+          ></Image>
           <Text ml="10px" color="black" fontSize="xs" fontWeight="400">
             Hello there
           </Text>
@@ -73,7 +81,14 @@ const SideQuotes = () => {
       </Box>
       <Box boxShadow="xl" p="6" rounded="md" bg="white" mx="20px" mt="10px">
         <Box display="flex">
-          <Image src={fire} width="10%" alt="Fire"></Image>
+          <Image
+            src={firewebp}
+            fallbackSrc={fire}
+            width="10%"
+            htmlWidth="27"
+            htmlHeight="27"
+            alt="Fire"
+          ></Image>
           <Text ml="10px" color="black" fontSize="xs" fontWeight="400">
             Kanye Tweets
           </Text>
